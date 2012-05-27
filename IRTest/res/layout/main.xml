@@ -8,9 +8,55 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="50"
+        android:layout_weight="50" android:gravity="center_horizontal"
         android:layout_height="match_parent" >
 
+     	<GridLayout
+	             android:layout_width="wrap_content" 
+	             android:layout_height="wrap_content" android:rowCount="3" android:columnCount="3" android:useDefaultMargins="true"  >
+	    
+     	    <Button
+	                 android:id="@+id/up"
+	                 android:layout_width="wrap_content"
+	                 android:layout_height="wrap_content"
+	                 android:onClick="onClick"
+	                 android:layout_column="1"
+	                 android:layout_row="0"
+	                 android:text="Up" />
+	        <Button
+	                 android:id="@+id/down"
+	                 android:layout_width="wrap_content"
+	                 android:layout_height="wrap_content"
+	                 android:onClick="onClick"
+	                 android:layout_column="1"
+	                 android:layout_row="2"
+	                 android:text="Down" />
+	        <Button
+	                 android:id="@+id/left"
+	                 android:layout_width="wrap_content"
+	                 android:layout_height="wrap_content"
+	                 android:onClick="onClick"
+	                 android:layout_column="0"
+	                 android:layout_row="1"
+	                 android:text="Left" />
+	        <Button
+	                 android:id="@+id/right"
+	                 android:layout_width="wrap_content"
+	                 android:layout_height="wrap_content"
+	                 android:onClick="onClick"
+	                 android:layout_column="2"
+	                 android:layout_row="1"
+	                 android:text="Right" />
+	        <Button
+	                 android:id="@+id/ok"
+	                 android:layout_width="wrap_content"
+	                 android:layout_height="wrap_content"
+	                 android:onClick="onClick"
+	                 android:layout_column="1"
+	                 android:layout_row="1"
+	                 android:text="OK" />
+             
+       	</GridLayout>
        
         
     </LinearLayout>
