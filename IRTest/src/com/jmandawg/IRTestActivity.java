@@ -26,6 +26,7 @@ public class IRTestActivity extends Activity {
 	Method sendIR;
 	Method readIR;
 	JSONObject codes;
+    boolean toggle = false;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,33 +60,15 @@ public class IRTestActivity extends Activity {
     
     /** Called when the user selects the Send button */
     public void onClick(View view) {
-    	Button b = (Button)view;
+    	//Button b = (Button)view.getId();
     	try {
-			String irCode = codes.getJSONObject("MCE").getString(b.getText().toString().toLowerCase() + (toggle?"T":""));
+			String irCode = codes.getJSONObject("MCE").getString(view.getTag().toString() + (toggle?"T":""));
 			sendIR.invoke(irService, irCode);
 			toggle = !toggle;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }
-    
-    boolean toggle = false;
-    /** Called when the user selects the Send button */
-    public void onClick2(View view) {
-    	
-    	try {
-			//for(int i=0;i<2;i++)
-				//sendIR.invoke(irService, "37300,11,67,10,28,10,28,10,27,11,27,11,27,11,67,11,67,11,27,11,68,10,27,11,27,11,27,11,67,11,27,11,1731,11,68,10,28,10,27,11,27,11,27,11,67,11,27,11,27,11,67,11,27,11,67,11,67,11,68,10,27,11,68,10,1653," + toggle);
-    		if(toggle)
-				sendIR.invoke(irService, "36000,96,32,16,16,16,16,16,32,16,32,48,32,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,32,16,16,16,16,16,16,32,16,16,16,16,16,16,16,16,32,32,16,16,16,16,16,16,16,16,32,32,16,16,16,16,32,2525");
-    		else
-				sendIR.invoke(irService, "36000,96,32,16,16,16,16,16,32,16,32,48,32,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,32,16,16,16,16,16,16,16,16,32,16,16,16,16,16,16,32,32,16,16,16,16,16,16,16,16,32,32,16,16,16,16,32,2511");
-    		toggle = !toggle;
-		} catch (Exception e) {
-		}
-    	
-    }
-    
     
     public void onClick3(View view) {
     	
@@ -110,25 +93,10 @@ public class IRTestActivity extends Activity {
 				sendIR.invoke(irService, "36000,96,32,16,16,16,16,16,32,16,32,48,32,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,32,16,16,16,16,16,16,16,16,32,16,16,16,16,16,16,32,32,16,16,16,16,16,16,16,16,16,16,16,16,32,16,16,16,16,2492");
 			toggle = !toggle;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        // Do something in response to button
     }
     
-public void onClick4(View view) {
-    	
-    	
-    	try {
-			if(toggle)                                                     //here
-				sendIR.invoke(irService, "36000,96,32,16,16,16,16,16,32,16,32,48,32,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,32,16,16,16,16,16,16,32,16,16,16,16,16,16,16,16,32,32,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,32,2492");
-			else
-				sendIR.invoke(irService, "36000,96,32,16,16,16,16,16,32,16,32,48,32,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,32,16,16,16,16,16,16,16,16,32,16,16,16,16,16,16,32,32,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,32,2492");
-			toggle = !toggle;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    }
     
     private String convertHexStringToIntString(String s)
     {
