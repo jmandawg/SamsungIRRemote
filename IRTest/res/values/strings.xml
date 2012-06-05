@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World, IRTestActivity!</string>
     <string name="app_name">MCE Remote</string>
+    <string name="wdlivetv">WD Live TV</string>
+    <string name="mce">Windows MCE</string>
+    <string name="remotesJSONFilePath">codes/Sharp.json</string>
+    <string name="chooseRemote">Choose Remote</string>
 
 </resources>

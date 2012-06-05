@@ -1,107 +1,152 @@
 package com.jmandawg;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.lang.reflect.Method;
+import java.util.Iterator;
 
-import org.apache.http.entity.InputStreamEntity;
 import org.json.JSONObject;
 
-import android.R.bool;
-import android.R.integer;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+
+import com.jmandawg.ircomm.IIRComm;
+import com.jmandawg.ircomm.SamsungIRComm;
+import com.jmandawg.popups.TestProntoPopup;
+import com.jmandawg.utils.Utils;
 
 public class IRTestActivity extends Activity {
 	
-	Object irService;
-	Class irClass;
-	Method sendIR;
-	Method readIR;
-	JSONObject codes;
-    boolean toggle = false;
+	private static final int REMOTES_MENU_GROUP = 777;
+	
+	JSONObject currentRemote = null;
+	String defaultRemote;
+    private static boolean toggle = false;
+    private static IIRComm irComm;
+    private static Context mContext;
+    
+    
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-    	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        try {
-        	
-		InputStream is = getAssets().open("codes/Sharp.json");
-		BufferedReader r = new BufferedReader(new InputStreamReader(is));
-		StringBuilder total = new StringBuilder();
-		String line;
-		while ((line = r.readLine()) != null) {
-		    total.append(line);
-		}
-		r.close();
-		is.close();
-		codes = new JSONObject(total.toString());
-		
-        irService = getSystemService("irda");
-    	irService.getClass();
-    	irClass = irService.getClass();
-    	
-    		readIR = irClass.getMethod("read_irsend");
-			sendIR = irClass.getMethod("write_irsend", new Class[]{String.class});
+        mContext = this;
+        irComm = new SamsungIRComm();
+        
+    	defaultRemote = getResources().getString(R.string.mce);
+    	if(currentRemote == null)
+        	loadCurrentRemote(defaultRemote);
+    }
+    
+   
+	private void loadAllRemotes(SubMenu remotesMenu)
+    {
+		try {
+			String[] files = getAssets().list("codes");
+			//JSONObject remotes = Utils.getJSONObjectFromFile(getResources().getString(R.string.remotesJSONFilePath));
+			//Iterator<String> keys = remotes.keys();
+			//int i=0;
+			//while(keys.hasNext())
+			for(int j=0;j<files.length;j++)
+	    	{
+				//String key = keys.next();
+				String key = files[j].replace("_", " ");
+				MenuItem mi = remotesMenu.add(REMOTES_MENU_GROUP, j, j, key);
+				if(key.equals(defaultRemote))
+				{
+					mi.setChecked(true);
+				}
+				//i++;
+	    	}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }
     
+    private void loadCurrentRemote(String name) {
+    	//JSONObject remotes = 
+    	 try {
+			currentRemote =  Utils.getJSONObjectFromFile("codes/" + name.replace(" ", "_")).getJSONObject(name);
+			//remotes.getJSONObject(name);
+			setTitle(name);
+    	 } 
+    	 catch (Exception e) {
+ 			e.printStackTrace();
+ 		}
+    	
+    }
     /** Called when the user selects the Send button */
     public void onClick(View view) {
     	//Button b = (Button)view.getId();
     	try {
-			String irCode = codes.getJSONObject("MCE").getString(view.getTag().toString() + (toggle?"T":""));
-			sendIR.invoke(irService, irCode);
-			toggle = !toggle;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    }
-    
-    public void onClick3(View view) {
-    	
-    	//Build the IR String
-		String hexCode = "0000 0071 0000 0020 0061 0021 0010 0011 0010 0011 0010 0021 0010 0021 0030 0021 0010 0011 0010 0011 0010 0011 0010 0011 0010 0011 0010 0011 0010 0011 0010 0011 0010 0011 0010 0011 0020 0011 0010 0011 0010 0011 0010 0021 0010 0011 0020 0011 0010 0021 0020 0021 0010 0011 0010 0011 0010 0011 0010 0011 0010 0011 0020 0011 0010 0021 0020 09EB";
-		String[] codes = hexCode.split(" ");
-		StringBuilder param = new StringBuilder("38400,");
-		for(int i=0;i<codes.length;i++)
-			param.append(convertHexStringToIntString(codes[i]) + ",");
-    	
-    	String mycode = param.substring(0, param.length() - 1);
-    	
-    	try {
-    		//public java.lang.String android.app.IrdaManager.read_irsend() throws android.os.RemoteException
+    		
+			String irCode;
+    		boolean enableToggle = currentRemote.getBoolean("toggle");
 			
-			String result = readIR.invoke(irService).toString();
-			//for(int i=0;i<2;i++)
-			//sendIR.invoke(irService, "37300,11,67,10,28,10,28,10,27,11,27,11,27,11,67,11,67,11,27,11,68,10,27,11,27,11,27,11,67,11,27,11,1731,11,68,10,28,10,27,11,27,11,27,11,67,11,27,11,27,11,67,11,27,11,67,11,67,11,68,10,27,11,68,10,1653," + toggle);
-			if(toggle)
-				sendIR.invoke(irService, "36000,96,32,16,16,16,16,16,32,16,32,48,32,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,32,16,16,16,16,16,16,32,16,16,16,16,16,16,16,16,32,32,16,16,16,16,16,16,16,16,16,16,16,16,32,16,16,16,16,2492");
+    		if(enableToggle)
+				irCode = currentRemote.getString(view.getTag().toString() + (toggle?"T":""));
 			else
-				sendIR.invoke(irService, "36000,96,32,16,16,16,16,16,32,16,32,48,32,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,32,16,16,16,16,16,16,16,16,32,16,16,16,16,16,16,32,32,16,16,16,16,16,16,16,16,16,16,16,16,32,16,16,16,16,2492");
-			toggle = !toggle;
+				irCode = currentRemote.getString(view.getTag().toString());
+    		
+    		sendIRCode(irCode);
+    		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }
     
-    
-    private String convertHexStringToIntString(String s)
+    public static void sendIRCode(String irCode)
     {
-    	Integer i = Integer.parseInt(s, 16);
-    	return i.toString(); 
+    	if(irCode != null)
+    	{
+    		if(irCode.startsWith("0000 "))
+    			irCode = Utils.convertProntoHexStringToIntString(irCode);
+    		irComm.sendIRCode(irCode);	
+    		toggle = !toggle;
+    	}
     }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	
+    	//MenuItem miChooseRemote = menu.add(R.string.chooseRemote);
+       SubMenu smRemotes = menu.addSubMenu(R.string.chooseRemote);
+       loadAllRemotes(smRemotes);
+       smRemotes.setGroupCheckable(REMOTES_MENU_GROUP, true, true);
+   
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+ 		if(item.getGroupId() == REMOTES_MENU_GROUP)
+ 		{
+ 			item.setChecked(true);
+ 			loadCurrentRemote(item.getTitle().toString());
+ 			return true;
+ 		}
+        switch (item.getItemId()) {
+	        case R.id.testPronto:
+	        	TestProntoPopup alert = new TestProntoPopup(this);
+	        	alert.show();
+	        	return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    
+
+    public static Context getContext() {
+		return mContext;
+	}
     
 }
