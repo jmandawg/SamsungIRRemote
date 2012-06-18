@@ -101,6 +101,10 @@ public class IRTestActivity extends Activity {
 		}
     }
     
+    public void optionsClick(View view) {
+    	this.openOptionsMenu();
+	}
+    
     public static void sendIRCode(String irCode)
     {
     	if(irCode != null)
@@ -121,6 +125,7 @@ public class IRTestActivity extends Activity {
        smRemotes.setGroupCheckable(REMOTES_MENU_GROUP, true, true);
    
         MenuInflater inflater = getMenuInflater();
+        //inflater.inflate(R.menu.options_menu, menu);
         inflater.inflate(R.menu.options_menu, menu);
         return true;
     }

@@ -18,8 +18,8 @@ public class TestProntoPopup extends AlertDialog.Builder implements DialogInterf
 		input.setText("0000 006D 0000 0020 000A 0046 000A 001E 000A 001E 000A 001E 000A 001E 000A 001E 000A 0046 000A 0046 000A 001E 000A 0046 000A 001E 000A 001E 000A 001E 000A 0046 000A 001E 000A 0679 000A 0046 000A 001E 000A 001E 000A 001E 000A 001E 000A 0046 000A 001E 000A 001E 000A 0046 000A 001E 000A 0046 000A 0046 000A 0046 000A 001E 000A 0046 000A 0679");
 		setTitle("Enter Pronto Code");
 		setView(input);
-		setPositiveButton("Test", this);
-		setNegativeButton(R.string.wdlivetv, this);
+		setPositiveButton("Send Test", this);
+		setNegativeButton("Cancel", this);
 
 		// TODO Auto-generated constructor stub
 	}

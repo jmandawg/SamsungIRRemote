@@ -1,476 +1,559 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LinearLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:baselineAligned="false"
     android:orientation="horizontal"
     android:weightSum="100" >
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="50" android:gravity="center_horizontal"
-        android:layout_height="match_parent" android:orientation="vertical" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="15dp"
+        android:layout_y="0dp"
+        android:orientation="vertical" >
 
-     	<GridLayout
-	             android:layout_width="wrap_content" 
-	             android:layout_height="wrap_content" android:rowCount="3" android:columnCount="3" android:useDefaultMargins="true"  >
-	    
-     	    
-     	    <Button
-	                 android:id="@+id/up"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:onClick="onClick"
-	                 android:layout_column="1"
-	                 android:layout_row="0"
-	                 android:text="Up" 
-	                 android:tag="up"/>
-	        <Button
-	                 android:id="@+id/down"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:onClick="onClick"
-	                 android:layout_column="1"
-	                 android:layout_row="2"
-	                 android:text="Down"
-	                 android:tag="down" />
-	        <Button
-	                 android:id="@+id/left"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:onClick="onClick"
-	                 android:layout_column="0"
-	                 android:layout_row="1"
-	                 android:text="Left"
-	                 android:tag="left" />
-	        <Button
-	                 android:id="@+id/right"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:onClick="onClick"
-	                 android:layout_column="2"
-	                 android:layout_row="1"
-	                 android:text="Right"
-	                 android:tag="right" />
-	        <Button
-	                 android:id="@+id/ok"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:onClick="onClick"
-	                 android:layout_column="1"
-	                 android:layout_row="1"
-	                 android:text="OK" 
-	                 android:tag="ok"/>
-             
-       	</GridLayout>
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:columnCount="3"
+            android:rowCount="3"
+            android:useDefaultMargins="true" >
 
-     	<AbsoluteLayout
-     	    android:layout_width="fill_parent"
-     	    android:layout_height="fill_parent" >
+            <ImageButton
+                android:id="@+id/menu"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="0"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/menu"
+                android:tag="menu" />
 
-     	    <GridLayout
-     	        android:layout_width="wrap_content"
-     	        android:layout_height="wrap_content"
-     	        android:layout_x="180dp"
-     	        android:layout_y="46dp"
-     	        android:columnCount="3"
-     	        android:rowCount="3" >
+            <ImageButton
+                android:id="@+id/up"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="0"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/up"
+                android:tag="up" />
 
-     	        <ImageButton
-     	            android:id="@+id/record"
-     	            android:layout_width="50dp"
-     	            android:layout_height="50dp"
-     	            android:layout_column="0"
-     	            android:layout_gravity="center_vertical|center_horizontal"
-     	            android:layout_row="0"
-     	            android:background="@null"
-     	            android:onClick="onClick"
-     	            android:scaleType="fitCenter"
-     	            android:src="@drawable/record"
-     	            android:tag="record" />
+            <ImageButton
+                android:id="@+id/info"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="0"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/info"
+                android:tag="info" />
 
-     	        <ImageButton
-     	            android:id="@+id/pause"
-     	            android:layout_width="50dp"
-     	            android:layout_height="50dp"
-     	            android:layout_column="1"
-     	            android:layout_gravity="center_vertical|center_horizontal"
-     	            android:layout_row="0"
-     	            android:background="@null"
-     	            android:onClick="onClick"
-     	            android:scaleType="fitCenter"
-     	            android:src="@drawable/pause"
-     	            android:tag="pause" />
+            <ImageButton
+                android:id="@+id/left"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="1"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/left"
+                android:tag="left" />
 
-     	        <ImageButton
-     	            android:id="@+id/stop"
-     	            android:layout_width="50dp"
-     	            android:layout_height="50dp"
-     	            android:layout_column="2"
-     	            android:layout_gravity="center_vertical|center_horizontal"
-     	            android:layout_row="0"
-     	            android:background="@null"
-     	            android:onClick="onClick"
-     	            android:scaleType="fitCenter"
-     	            android:src="@drawable/stop"
-     	            android:tag="stop" />
+            <ImageButton
+                android:id="@+id/ok"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="1"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ok"
+                android:tag="ok" />
 
-     	        <ImageButton
-     	            android:id="@+id/rewind"
-     	            android:layout_width="50dp"
-     	            android:layout_height="50dp"
-     	            android:layout_column="0"
-     	            android:layout_gravity="center_vertical|center_horizontal"
-     	            android:layout_row="1"
-     	            android:background="@null"
-     	            android:onClick="onClick"
-     	            android:scaleType="fitCenter"
-     	            android:src="@drawable/rewind"
-     	            android:tag="rewind" />
+            <ImageButton
+                android:id="@+id/right"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="1"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/right"
+                android:tag="right" />
 
-     	        <ImageButton
-     	            android:id="@+id/play"
-     	            android:layout_width="60dp"
-     	            android:layout_height="60dp"
-     	            android:layout_column="1"
-     	            android:layout_gravity="center_vertical|center_horizontal"
-     	            android:layout_row="1"
-     	            android:background="@null"
-     	            android:onClick="onClick"
-     	            android:scaleType="fitCenter"
-     	            android:src="@drawable/play"
-     	            android:tag="play" />
+            <ImageButton
+                android:id="@+id/exit"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="2"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/exit"
+                android:tag="exit" />
 
-     	        <ImageButton
-     	            android:id="@+id/fastforward"
-     	            android:layout_width="50dp"
-     	            android:layout_height="50dp"
-     	            android:layout_column="2"
-     	            android:layout_gravity="center_vertical|center_horizontal"
-     	            android:layout_row="1"
-     	            android:background="@null"
-     	            android:onClick="onClick"
-     	            android:scaleType="fitCenter"
-     	            android:src="@drawable/fastforward"
-     	            android:tag="forward" />
+            <ImageButton
+                android:id="@+id/down"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="2"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/down"
+                android:tag="down" />
 
-     	        <ImageButton
-     	            android:id="@+id/revskip"
-     	            android:layout_width="50dp"
-     	            android:layout_height="50dp"
-     	            android:layout_column="0"
-     	            android:layout_gravity="center"
-     	            android:layout_row="2"
-     	            android:background="@null"
-     	            android:onClick="onClick"
-     	            android:scaleType="fitCenter"
-     	            android:src="@drawable/revskip"
-     	            android:tag="skipBackward" />
+            <ImageButton
+                android:id="@+id/guide"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="2"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/guide"
+                android:tag="guide" />
+        </GridLayout>
 
-     	        <ImageButton
-     	            android:id="@+id/forwardskip"
-     	            android:layout_width="50dp"
-     	            android:layout_height="50dp"
-     	            android:layout_column="2"
-     	            android:layout_gravity="center_vertical|center_horizontal"
-     	            android:layout_row="2"
-     	            android:background="@null"
-     	            android:onClick="onClick"
-     	            android:scaleType="fitCenter"
-     	            android:src="@drawable/forwardskip"
-     	            android:tag="skipForward" />
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:columnCount="3"
+            android:rowCount="4"
+            android:useDefaultMargins="true" >
 
-     	    </GridLayout>
+            <ImageButton
+                android:id="@+id/livetv"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="0"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/livetv"
+                android:tag="livetv" />
 
-     	    <ImageButton
-     	        android:id="@+id/sleep"
-     	        android:layout_width="50dp"
-     	        android:layout_height="50dp"
-     	        android:layout_x="462dp"
-     	        android:layout_y="50dp"
-     	        android:background="@null"
-     	        android:onClick="onClick"
-     	        android:scaleType="fitCenter"
-     	        android:src="@drawable/powerbutton"
-     	        android:tag="sleepToggle" />
+            <ImageButton
+                android:id="@+id/recordedtv"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="0"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/recordedtv"
+                android:tag="recordedtv" />
 
-     	</AbsoluteLayout>
-        
+            <ImageButton
+                android:id="@+id/guidetv"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="0"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/guidetv"
+                android:tag="guidetv" />
+
+            <ImageButton
+                android:id="@+id/rewind"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="1"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rewind"
+                android:tag="rewind" />
+
+            <ImageButton
+                android:id="@+id/play"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="1"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/play"
+                android:tag="play" />
+
+            <ImageButton
+                android:id="@+id/fastforward"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="1"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/fastforward"
+                android:tag="fastForward" />
+
+            <ImageButton
+                android:id="@+id/skipback"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="2"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/skipback"
+                android:tag="skipBack" />
+
+            <ImageButton
+                android:id="@+id/pause"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="2"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/pause"
+                android:tag="pause" />
+
+            <ImageButton
+                android:id="@+id/skipforward"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="2"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/skipforward"
+                android:tag="skipForward" />
+
+            <ImageButton
+                android:id="@+id/record"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="3"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/record"
+                android:tag="record" />
+
+            <ImageButton
+                android:id="@+id/stop"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="3"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/stop"
+                android:tag="stop" />
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:columnCount="4"
+            android:rowCount="1" >
+
+            <ImageButton
+                android:id="@+id/red"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginRight="5dp"
+                android:layout_row="0"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/red"
+                android:tag="red" />
+
+            <ImageButton
+                android:id="@+id/green"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginRight="5dp"
+                android:layout_row="0"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/green"
+                android:tag="green" />
+
+            <ImageButton
+                android:id="@+id/yellow"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginRight="5dp"
+                android:layout_row="0"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/yellow"
+                android:tag="yellow" />
+
+            <ImageButton
+                android:id="@+id/blue"
+                android:layout_column="3"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="0"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/blue"
+                android:tag="blue" />
+        </GridLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="50" >
-		<Button
-	                 android:id="@+id/back"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:onClick="onClick"
-	                 android:text="Back"
-	                 android:tag="back" />
-	    <LinearLayout
-	        android:layout_width="0dp"
-	        android:layout_weight="3"
-	        android:layout_height="match_parent" android:orientation="vertical" >
-	
-	        <GridLayout
-	             android:layout_width="wrap_content" android:layout_gravity="center" 
-	             android:layout_height="wrap_content" android:columnCount="3" android:useDefaultMargins="true"  >
-	         <Button
-	                 android:id="@+id/volUp"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:onClick="onClick"
-	                 android:layout_column="0"
-	                 android:layout_row="0"
-	                 android:text="Vol+"
-	                 android:tag="volUp" />
-	        <Button
-	                 android:id="@+id/volDown"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:onClick="onClick"
-	                 android:layout_column="0"
-	                 android:layout_row="2"
-	                 android:text="Vol-"
-	                 android:tag="volDown"/>
-	        <ImageButton 
-	            android:id="@+id/start"
-	                 android:layout_width="80dp"
-	                 android:layout_height="80dp"
-	                 android:onClick="onClick"
-	                 android:layout_column="1"
-	                 android:layout_row="1"
-	                 android:src="@drawable/windows_logo" 
-	                 android:scaleType="fitCenter"
-	                 android:background="@null"
-		             android:tag="start"/>
-	       
-	        <Button
-	                 android:id="@+id/chanUp"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:onClick="onClick"
-	                 android:layout_column="2"
-	                 android:layout_row="0"
-	                 android:text="Chan+" 
-	                 android:tag="chanUp"/>
-	        <Button
-	                 android:id="@+id/chanDown"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:onClick="onClick"
-	                 android:layout_column="2"
-	                 android:layout_row="2"
-	                 android:text="Chan-"
-	                 android:tag="chanDown" />
-	        </GridLayout>
-	
-	        <Space
-	            android:layout_width="wrap_content"
-	            android:layout_height="20dp" />
-	
-	         <GridLayout
-	             android:layout_width="wrap_content" android:layout_gravity="center"
-	             android:layout_height="wrap_content" android:columnCount="3" android:useDefaultMargins="true"
-	              >
-	
-	             <Button
-	                 android:id="@+id/num1"
-	                 android:background="@layout/round_button"
-	                 android:layout_width="40dp"
-	                 android:layout_height="40dp"
-	                 android:layout_gravity="center"
-	                 android:gravity="center_vertical|center_horizontal"
-	                 android:layout_column="0"
-	                 android:layout_row="0"
-	                 android:onClick="onClick"
-	                 android:tag="num1"
-	                 android:text="1" />
-	
-	             <Button
-	                 android:id="@+id/num2"
-	                 android:background="@layout/round_button"
-	                 android:layout_width="40dp"
-	                 android:layout_height="40dp"
-	                 android:layout_gravity="center"
-	                 android:gravity="center_vertical|center_horizontal"
-	                 android:layout_column="1"
-	                 android:layout_row="0"
-	                 android:onClick="onClick"
-	                 android:tag="num2"
-	                 android:text="2" />
-	
-	             <Button
-	                 android:id="@+id/num3"
-	                 android:background="@layout/round_button"
-	                 android:layout_width="40dp"
-	                 android:layout_height="40dp"
-	                 android:layout_gravity="center"
-	                 android:gravity="center_vertical|center_horizontal"
-	                 android:layout_column="2"
-	                 android:layout_row="0"
-	                 android:onClick="onClick"
-	                 android:tag="num3"
-	                 android:text="3" />
-	
-	             <Button
-	                 android:id="@+id/num4"
-	                 android:background="@layout/round_button"
-	                 android:layout_width="40dp"
-	                 android:layout_height="40dp"
-	                 android:layout_gravity="center"
-	                 android:gravity="center_vertical|center_horizontal"
-	                 android:layout_column="0"
-	                 android:layout_row="1"
-	                 android:onClick="onClick"
-	                 android:tag="num4"
-	                 android:text="4" />
-	
-	             <Button
-	                 android:id="@+id/num5"
-	                 android:background="@layout/round_button"
-	                 android:layout_width="40dp"
-	                 android:layout_height="40dp"
-	                 android:layout_gravity="center"
-	                 android:gravity="center_vertical|center_horizontal"
-	                 android:layout_column="1"
-	                 android:layout_row="1"
-	                 android:onClick="onClick"
-	                 android:tag="num5"
-	                 android:text="5" />
-	
-	             <Button
-	                 android:id="@+id/num6"
-	                 android:background="@layout/round_button"
-	                 android:layout_width="40dp"
-	                 android:layout_height="40dp"
-	                 android:layout_gravity="center"
-	                 android:gravity="center_vertical|center_horizontal"
-	                 android:layout_column="2"
-	                 android:layout_row="1"
-	                 android:onClick="onClick"
-	                 android:tag="num6"
-	                 android:text="6" />
-	
-	             <Button
-	                 android:id="@+id/num7"
-	                 android:background="@layout/round_button"
-	                 android:layout_width="40dp"
-	                 android:layout_height="40dp"
-	                 android:layout_gravity="center"
-	                 android:gravity="center_vertical|center_horizontal"
-	                 android:layout_column="0"
-	                 android:layout_row="2"
-	                 android:onClick="onClick"
-	                 android:tag="num7"
-	                 android:text="7" />
-	
-	             <Button
-	                 android:id="@+id/num8"
-	                 android:background="@layout/round_button"
-	                 android:layout_width="40dp"
-	                 android:layout_height="40dp"
-	                 android:layout_gravity="center"
-	                 android:gravity="center_vertical|center_horizontal"
-	                 android:layout_column="1"
-	                 android:layout_row="2"
-	                 android:onClick="onClick"
-	                 android:tag="num8"
-	                 android:text="8" />
-	
-	             <Button
-	                 android:id="@+id/num9"
-	                 android:background="@layout/round_button"
-	                 android:layout_width="40dp"
-	                 android:layout_height="40dp"
-	                 android:layout_gravity="center"
-	                 android:gravity="center_vertical|center_horizontal"
-	                 android:layout_column="2"
-	                 android:layout_row="2"
-	                 android:onClick="onClick"
-	                 android:tag="num9"
-	                 android:text="9" />
-	             
-	              <Button
-	                 android:id="@+id/asterix"
-	                 android:background="@layout/round_button"
-	                 android:layout_width="40dp"
-	                 android:layout_height="40dp"
-	                 android:layout_gravity="center"
-	                 android:gravity="center_vertical|center_horizontal"
-	                 android:layout_column="0"
-	                 android:layout_row="3"
-	                 android:onClick="onClick"
-	                 android:tag="asterix"
-	                 android:text="*" />
-	
-	             <Button
-	                 android:id="@+id/num0"
-	                 android:background="@layout/round_button"
-	                 android:layout_width="40dp"
-	                 android:layout_height="40dp"
-	                 android:layout_gravity="center"
-	                 android:gravity="center_vertical|center_horizontal"
-	                 android:layout_column="1"
-	                 android:layout_row="3"
-	                 android:onClick="onClick"
-	                 android:tag="num0"
-	                 android:text="0" />
-	            
-	             <Button
-	                 android:id="@+id/pound"
-	                 android:background="@layout/round_button"
-	                 android:layout_width="40dp"
-	                 android:layout_height="40dp"
-	                 android:layout_gravity="center"
-	                 android:gravity="center_vertical|center_horizontal"
-	                 android:layout_column="2"
-	                 android:layout_row="3"
-	                 android:onClick="onClick"
-	                 android:tag="pound"
-	                 android:text="#" />
-	             
-	             
-	         </GridLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="350dp"
+        android:layout_y="0dp"
+        android:orientation="vertical" >
 
-	         <AbsoluteLayout
-	             android:layout_width="match_parent"
-	             android:layout_height="wrap_content" >
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="2"
+            android:layout_gravity="center"
+            android:useDefaultMargins="false" android:layout_marginBottom="10dp" >
 
-	             <Button
-	                 android:id="@+id/clear"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:layout_x="104dp"
-	                 android:layout_y="6dp"
-	                 android:background="@layout/round_button"
-	                 android:onClick="onClick"
-	                 android:tag="clear"
-	                 android:text="clear" />
+            <ImageButton
+                android:id="@+id/volUp"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="0"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/plus"
+                android:tag="volUp" />
 
-	             <Button
-	                 android:id="@+id/enter"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:layout_x="224dp"
-	                 android:layout_y="6dp"
-	                 android:background="@layout/round_button"
-	                 android:onClick="onClick"
-	                 android:tag="enter"
-	                 android:text="enter" />
-	             
-	         </AbsoluteLayout>
-	    </LinearLayout>
-	    <Button
-	                 android:id="@+id/info"
-	                 android:layout_width="wrap_content"
-	                 android:layout_height="wrap_content"
-	                 android:onClick="onClick"
-	                 android:tag="info"
-	                 android:text="Info" />
-		</LinearLayout>
-   
+            <ImageButton
+                android:id="@+id/volDown"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="1"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/minus"
+                android:tag="volDown" />
 
-</LinearLayout>
+            <ImageButton
+                android:id="@+id/windows"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="0"
+                android:layout_rowSpan="2"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/windows"
+                android:tag="windows" />
+
+            <ImageButton
+                android:id="@+id/chanUp"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="0"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/plus"
+                android:tag="chanUp" />
+
+            <ImageButton
+                android:id="@+id/chanDown"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_row="1"
+                android:background="@null"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/minus"
+                android:tag="chanDown" />
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:columnCount="3"
+            android:rowCount="5"
+            android:useDefaultMargins="true" >
+
+            <ImageButton
+                android:id="@+id/mute"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:background="@null"
+                 android:layout_gravity="right|center_horizontal"
+                android:gravity="right"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mute"
+                android:tag="mute" />
+
+            <ImageButton
+                android:id="@+id/last"
+                android:layout_column="2"
+                android:layout_row="0"
+                android:background="@null"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/last"
+                android:tag="last" />
+
+            <ImageButton
+                android:id="@+id/num1"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:background="@null"
+                 android:layout_gravity="right|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/num1"
+                android:tag="num1" />
+
+            <ImageButton
+                android:id="@+id/num2"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:background="@null"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/num2"
+                android:tag="num2" />
+
+            <ImageButton
+                android:id="@+id/num3"
+                android:layout_column="2"
+                android:layout_row="1"
+                android:background="@null"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/num3"
+                android:tag="num3" />
+
+            <ImageButton
+                android:id="@+id/num4"
+                android:layout_column="0"
+                android:layout_row="2"
+                android:background="@null"
+                 android:layout_gravity="right|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/num4"
+                android:tag="num4" />
+
+            <ImageButton
+                android:id="@+id/num5"
+                android:layout_column="1"
+                android:layout_row="2"
+                android:background="@null"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/num5"
+                android:tag="num5" />
+
+            <ImageButton
+                android:id="@+id/num6"
+                android:layout_column="2"
+                android:layout_row="2"
+                android:background="@null"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/num6"
+                android:tag="num6" />
+
+            <ImageButton
+                android:id="@+id/num7"
+                android:layout_column="0"
+                android:layout_row="3"
+                android:background="@null"
+                android:layout_gravity="right|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/num7"
+                android:tag="num7" />
+
+            <ImageButton
+                android:id="@+id/num8"
+                android:layout_column="1"
+                android:layout_row="3"
+                android:background="@null"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/num8"
+                android:tag="num8" />
+
+            <ImageButton
+                android:id="@+id/num9"
+                android:layout_column="2"
+                android:layout_row="3"
+                android:background="@null"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/num9"
+                android:tag="num9" />
+
+            <ImageButton
+                android:id="@+id/clear"
+                android:layout_column="0"
+                android:layout_row="4"
+                android:background="@null"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/clear"
+                android:tag="clear" />
+
+            <ImageButton
+                android:id="@+id/num0"
+                android:layout_column="1"
+                android:layout_row="4"
+                android:background="@null"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/num0"
+                android:tag="num0" />
+
+            <ImageButton
+                android:id="@+id/enter"
+                android:layout_column="2"
+                android:layout_row="4"
+                android:background="@null"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/enter"
+                android:tag="enter" />
+        </GridLayout>
+    </LinearLayout>
+
+    <Button
+    android:layout_height="35dp"
+    android:layout_width="40dp"
+    android:layout_x="980dp"    
+    android:text="..."
+    android:onClick="optionsClick"
+    />
+</AbsoluteLayout>
