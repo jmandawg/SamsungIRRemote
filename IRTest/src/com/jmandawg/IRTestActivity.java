@@ -1,12 +1,15 @@
 package com.jmandawg;
 
+import java.io.File;
 import java.util.Iterator;
 
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -48,12 +51,13 @@ public class IRTestActivity extends Activity {
 	private void loadAllRemotes(SubMenu remotesMenu)
     {
 		try {
+			int j;
 			String[] files = getAssets().list("codes");
 			//JSONObject remotes = Utils.getJSONObjectFromFile(getResources().getString(R.string.remotesJSONFilePath));
 			//Iterator<String> keys = remotes.keys();
 			//int i=0;
 			//while(keys.hasNext())
-			for(int j=0;j<files.length;j++)
+			for(j=0;j<files.length;j++)
 	    	{
 				//String key = keys.next();
 				String key = files[j].replace("_", " ");
@@ -64,6 +68,26 @@ public class IRTestActivity extends Activity {
 				}
 				//i++;
 	    	}
+			
+			//Now check the SD Card folder
+			String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+			File remotesDir = new File(path + "/remotes");
+			if(remotesDir.exists())
+			{
+				String[] children = remotesDir.list();
+				if (children != null) {
+				    for (int i=0; i<children.length; i++) {
+				        // Get filename of file or directory
+				    	j++;
+				        String filename = children[i].replace("_"," ");
+				        MenuItem mi = remotesMenu.add(REMOTES_MENU_GROUP, j, j, filename);
+						if(filename.equals(defaultRemote))
+						{
+							mi.setChecked(true);
+						}
+				    }
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -72,7 +96,9 @@ public class IRTestActivity extends Activity {
     private void loadCurrentRemote(String name) {
     	//JSONObject remotes = 
     	 try {
-			currentRemote =  Utils.getJSONObjectFromFile("codes/" + name.replace(" ", "_")).getJSONObject(name);
+    		
+			//currentRemote =  Utils.getJSONObjectFromFile("codes/" + name.replace(" ", "_")).getJSONObject(name);
+			currentRemote =  Utils.getJSONObjectFromFile(name).getJSONObject(name);
 			//remotes.getJSONObject(name);
 			setTitle(name);
     	 } 

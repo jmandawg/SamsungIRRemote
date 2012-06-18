@@ -1,12 +1,16 @@
 package com.jmandawg.utils;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.res.AssetManager;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Environment;
 
 import com.jmandawg.IRTestActivity;
 
@@ -21,10 +25,19 @@ public class Utils {
 		}
 	}
 
-	public static String getJSONStringFromFile(String path) {
+	public static String getJSONStringFromFile(String name) {
 		try {
-			
-			InputStream is = IRTestActivity.getContext().getAssets().open(path);
+			File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/remotes/" + name.replace(" ", "_"));
+			InputStream is;
+    		if(f.exists())
+    		{
+    			
+    			is = new FileInputStream(f);
+    		}
+    		else
+    		{
+    			is = IRTestActivity.getContext().getAssets().open("codes/" + name.replace(" ", "_"));
+    		}
 			BufferedReader r = new BufferedReader(new InputStreamReader(is));
 			StringBuilder jsonString = new StringBuilder();
 			String line;
@@ -35,6 +48,7 @@ public class Utils {
 			is.close();
 			return jsonString.toString();
 		} catch (Exception e) {
+			showMsgBox("Error reading file", "Error reading file, check JSON format\n" + name);
 			e.printStackTrace();
 			return null;
 		}
@@ -54,5 +68,19 @@ public class Utils {
 		int val = Integer.parseInt(s, 16);
 		Integer i = (int) (1000000 / (val * .241246));
 		return i.toString();
+	}
+	
+	public static void showMsgBox(String title, String Msg)
+	{
+		AlertDialog alertDialog = new AlertDialog.Builder(IRTestActivity.getContext()).create();
+		alertDialog.setTitle("Getting Remotes");
+		alertDialog.setMessage("Are you sure?");
+		alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+		   public void onClick(DialogInterface dialog, int which) {
+		      dialog.dismiss();
+		   }
+		});
+		//alertDialog.setIcon(R.drawable.icon);
+		alertDialog.show();
 	}
 }
